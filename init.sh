@@ -29,7 +29,10 @@ else
     xcode-select --install 2>/dev/null
 
     while true; do
-        sleep 5
+        sleep 3
+
+        # show some activity while we wait
+        echo ".\c"
 
         # if xcode-select hasn't created the target dir, wait
         if [ ! -d "/Library/Developer/CommandLineTools/usr/bin" ]; then
@@ -49,7 +52,7 @@ else
         fi
     done
 
-    read -p "Once the install has completed, hit enter to continue"
+    read -p "Once the installer has finished, hit enter to continue" DONE
 fi
 
 info "Installing pip..."
