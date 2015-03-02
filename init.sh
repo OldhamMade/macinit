@@ -2,22 +2,52 @@
 
 set -e
 
-echo "\033[0;34mYou'll need to enter your sudo password to continue...\033[0m"
+# Show the given message and exit with status 1.
+function raise {
+    echo
+    echo "\033[31mError: $*\033[0m"
+    exit 1
+}
 
-sudo echo "\033[0;34mInstalling XCode Command Line Tools...\033[0m"
-if [ -f /usr/bin/gcc ]; then
-    echo "\033[0;34m... already installed.\033[0m"
+# Show the given message with highlighting
+function info {
+    echo "\033[0;34m$*\033[0m"
+}
+
+[[ "$USER" == root ]] && raise "Run this as a normal user, I'll sudo when I need to."
+
+info "Checking for XCode Command Line Tools..."
+if [ -n "$(xcode-select --print-path 2>/dev/null)" ] &&
+   [ -n "$(git --version 2>/dev/null)" ]; then
+    info "... installed."
 else
-    xcode-select --install
+    info "... not found."
+    info "I'll need to sudo to continue..."
+    sudo info "Thank you."
+
+    info "Installing XCode Command Line Tools..."
+    xcode-select --install 2>/dev/null
+
+    while true; do
+        sleep 5
+        COUNT=`ls -l /Library/Developer/CommandLineTools/usr/bin/ | wc -l`
+        if [ -n "$(xcode-select --print-path 2>/dev/null)" ] &&
+           [ -n "$(git --version 2>/dev/null)" ] &&
+           [ "$COUNT" -gt "60" ]
+        then
+            break;
+        fi
+    done
+
+    read -p "Once the install has completed, hit enter to continue"
 fi
 
-echo "\033[0;34mInstalling pip...\033[0m"
-curl -L https://bootstrap.pypa.io/get-pip.py | sudo python
+info "Installing pip..."
+curl -Ls https://bootstrap.pypa.io/get-pip.py | sudo python
 
-echo "\033[0;34mInstalling battleschool...\033[0m"
+info "Installing battleschool..."
 sudo pip install battleschool
 
-echo "\033[0;34mDone.\033[0m"
-echo ""
-echo "\033[0;34mTo run battleschool, execute the following command:\033[0m"
-echo "\033[0;34mbattle --config-file http://somesite/path/to/your/config.yml\033[0m"
+info "... and we're done!\n
+To run battleschool, execute the following command:
+battle --config-file http://somesite/path/to/your/config.yml"

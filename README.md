@@ -12,7 +12,7 @@ Specifically, it installs the following:
 
 To start, run the following in a terminal:
 
-    $ curl -L https://raw.github.com/OldhamMade/macinit/master/init.sh | sh
+    $ curl -Ls https://raw.github.com/OldhamMade/macinit/master/init.sh | sh
 
 ...and go grab a coffee!
 
