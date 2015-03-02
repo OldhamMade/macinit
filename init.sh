@@ -30,11 +30,21 @@ else
 
     while true; do
         sleep 5
+
+        # if xcode-select hasn't created the target dir, wait
+        if [ ! -d "/Library/Developer/CommandLineTools/usr/bin" ]; then
+            continue;
+        fi
+
+        # once created, count the number of files in there
         COUNT=`ls -l /Library/Developer/CommandLineTools/usr/bin/ | wc -l`
-        if [ -n "$(xcode-select --print-path 2>/dev/null)" ] &&
-           [ -n "$(git --version 2>/dev/null)" ] &&
-           [ "$COUNT" -gt "60" ]
-        then
+
+        # make sure we have a good number of binaries available
+        # and that some essentials exist
+        if [ -n "$(xcode-select --print-path 2>/dev/null)" ] && \
+           [ -n "$(gcc --version 2>/dev/null)" ] && \
+           [ -n "$(git --version 2>/dev/null)" ] && \
+           [ "$COUNT" -gt "60" ]; then
             break;
         fi
     done
