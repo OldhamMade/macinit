@@ -26,7 +26,7 @@ else
     sudo info "Thank you."
 
     info "Installing XCode Command Line Tools..."
-    xcode-select --install 2>/dev/null
+    xcode-select --install
 
     while true; do
         sleep 3
