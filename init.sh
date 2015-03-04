@@ -17,7 +17,8 @@ function info {
 [[ "$USER" == root ]] && raise "Run this as a normal user, I'll sudo when I need to."
 
 info "Checking for XCode Command Line Tools..."
-if [ -n "$(xcode-select --print-path 2>/dev/null)" ] &&
+if [ -d "/Library/Developer/CommandLineTools/usr/bin" ] && \
+   [ -n "$(xcode-select --print-path 2>/dev/null)" ] && \
    [ -n "$(git --version 2>/dev/null)" ]; then
     info "... installed."
 else
@@ -26,33 +27,9 @@ else
     sudo info "Thank you."
 
     info "Installing XCode Command Line Tools..."
-    (xcode-select --install 2>/dev/null) &
-
-    while true; do
-        sleep 3
-
-        # show some activity while we wait
-        echo ".\c"
-
-        # if xcode-select hasn't created the target dir, wait
-        if [ ! -d "/Library/Developer/CommandLineTools/usr/bin" ]; then
-            continue;
-        fi
-
-        # once created, count the number of files in there
-        COUNT=`ls -l /Library/Developer/CommandLineTools/usr/bin/ | wc -l`
-
-        # make sure we have a good number of binaries available
-        # and that some essentials exist
-        if [ -n "$(xcode-select --print-path 2>/dev/null)" ] && \
-           [ -n "$(gcc --version 2>/dev/null)" ] && \
-           [ -n "$(git --version 2>/dev/null)" ] && \
-           [ "$COUNT" -gt "60" ]; then
-            break;
-        fi
-    done
-
-    read -p "Once the installer has finished, hit enter to continue" DONE
+    xcode-select --install
+    info "Re-run this script to continue with the setup once
+the command line tools have finished installing."
 fi
 
 info "Installing pip..."
