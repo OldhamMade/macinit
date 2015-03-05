@@ -7,6 +7,7 @@ Specifically, it installs the following:
 
 - The xcode command line tools
 - pip, the PyPA recommended tool for installing Python packages
+- homebrew, the "missing package manager for OS X"
 - battleschool, which is an environment provisioning tool similar to boxen, allowing
   the install of programs/dependencies using a set of declarative config files
 

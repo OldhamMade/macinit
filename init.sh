@@ -35,6 +35,9 @@ fi
 info "Installing pip..."
 curl -Ls https://bootstrap.pypa.io/get-pip.py | sudo python
 
+info "Installing homebrew..."
+ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+
 info "Installing battleschool..."
 sudo pip install battleschool
 
