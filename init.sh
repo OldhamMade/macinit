@@ -32,8 +32,15 @@ else
 the command line tools have finished installing."
 fi
 
-info "Installing homebrew..."
-ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+info "Checking for homebrew..."
+if [ -d "/usr/local/Cellar" ]; then
+    info "... installed."
+    info "Updating homebrew..."
+    brew update
+else
+    info "Installing homebrew..."
+    ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+fi
 
 info "Checking for pyenv..."
 if [ -d "~/.pyenv" ]; then
