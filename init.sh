@@ -32,11 +32,25 @@ else
 the command line tools have finished installing."
 fi
 
-info "Installing pip..."
-curl -Ls https://bootstrap.pypa.io/get-pip.py | sudo python
-
 info "Installing homebrew..."
 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+
+info "Checking for pyenv..."
+if [ -d "~/.pyenv" ]; then
+    info "... installed."
+else
+    info "Installing pyenv..."
+    curl -L https://raw.githubusercontent.com/yyuu/pyenv-installer/master/bin/pyenv-installer | bash
+    pyenv update
+    info "Installing the latest Python 2.7 version..."
+    pyenv install 2.7.10
+    pyenv global 2.7.10
+fi
+
+pyenv local 2.7.10
+
+info "Installing pip..."
+curl -Ls https://bootstrap.pypa.io/get-pip.py | python
 
 info "Installing battleschool..."
 sudo pip install battleschool
