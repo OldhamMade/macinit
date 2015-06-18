@@ -33,7 +33,8 @@ the command line tools have finished installing."
 fi
 
 info "Checking for homebrew..."
-if [ -d "/usr/local/Cellar" ]; then
+if [ -d "/usr/local/Cellar" ] && \
+   [ -n "$(brew --version 2>/dev/null)" ]; then
     info "... installed."
     info "Updating homebrew..."
     brew update
@@ -43,7 +44,8 @@ else
 fi
 
 info "Checking for pyenv..."
-if [ -d "~/.pyenv" ]; then
+if [ -d "~/.pyenv" ] && \
+   [ -n "$(pyenv --version 2>/dev/null)" ]; then
     info "... installed."
 else
     info "Installing pyenv..."
