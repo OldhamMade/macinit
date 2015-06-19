@@ -43,7 +43,8 @@ else
 fi
 
 info "Checking for pyenv..."
-if [ -n "$(pyenv --version 2>/dev/null)" ]; then
+if [ -d "$HOME/.pyenv" ] && \
+   [ -n "$(pyenv --version 2>/dev/null)" ]; then
     info "... installed."
 else
     info "Installing pyenv..."
