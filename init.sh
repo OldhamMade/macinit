@@ -63,7 +63,10 @@ fi
 
 export PATH="$HOME/.pyenv/bin:$PATH"
 
+eval "$(pyenv init -)"
 pyenv local 2.7.10
+
+info "Using $PYENV_SHELL"
 
 info "Installing pip..."
 curl -Ls https://bootstrap.pypa.io/get-pip.py | python
