@@ -48,6 +48,10 @@ if [ -n "$(pyenv --version 2>/dev/null)" ]; then
 else
     info "Installing pyenv..."
     curl -L https://raw.githubusercontent.com/yyuu/pyenv-installer/master/bin/pyenv-installer | bash
+    info "... done."
+    info "Loading pyenv..."
+    export PATH="$HOME/.pyenv/bin:$PATH"
+    info "... done."
     pyenv update
     info "Installing the latest Python 2.7 version..."
     pyenv install 2.7.10
