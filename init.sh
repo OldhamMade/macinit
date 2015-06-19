@@ -66,13 +66,11 @@ export PATH="$HOME/.pyenv/bin:$PATH"
 eval "$(pyenv init -)"
 pyenv local 2.7.10
 
-info "Using $PYENV_SHELL"
-
 info "Installing pip..."
-curl -Ls https://bootstrap.pypa.io/get-pip.py | python
+curl -Ls https://bootstrap.pypa.io/get-pip.py | $HOME/.pyenv/shims/python
 
 info "Installing battleschool..."
-pip install battleschool
+$HOME/.pyenv/shims/pip install battleschool
 
 info "... and we're done!\n
 To run battleschool, execute the following command:
