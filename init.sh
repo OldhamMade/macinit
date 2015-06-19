@@ -56,7 +56,11 @@ else
     info "Installing the latest Python 2.7 version..."
     pyenv install 2.7.10
     pyenv global 2.7.10
+    info "...done.\n\nPlease re-run this script."
+    exit
 fi
+
+export PATH="$HOME/.pyenv/bin:$PATH"
 
 pyenv local 2.7.10
 
@@ -64,7 +68,7 @@ info "Installing pip..."
 curl -Ls https://bootstrap.pypa.io/get-pip.py | python
 
 info "Installing battleschool..."
-sudo pip install battleschool
+pip install battleschool
 
 info "... and we're done!\n
 To run battleschool, execute the following command:
