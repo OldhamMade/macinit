@@ -46,7 +46,7 @@ info "Installing pip..."
 curl -Ls https://bootstrap.pypa.io/get-pip.py | sudo python
 
 info "Installing battleschool..."
-pip install battleschool
+sudo pip install battleschool
 
 info "... and we're done!\n
 To run battleschool, execute the following command:
