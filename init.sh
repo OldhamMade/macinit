@@ -40,6 +40,8 @@ if [ -n "$(brew --version 2>/dev/null)" ]; then
 else
     info "Installing homebrew..."
     ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+    brew install caskroom/cask/brew-cask
+    echo 'export PATH="/usr/local/sbin:$PATH"' >> ~/.bash_profile
 fi
 
 info "Installing pip..."
