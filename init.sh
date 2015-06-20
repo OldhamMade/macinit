@@ -49,6 +49,8 @@ info "Installing battleschool..."
 sudo pip install battleschool
 info "...creating symlinks..."
 sudo ln -s $(python -c "from distutils.sysconfig import get_python_lib; print(get_python_lib())")/usr/share/battleschool /usr/share/battleschool
+info "...changing ownership to $USER..."
+sudo chown -Rf $USER /usr/share/battleschool
 
 info "... and we're done!\n
 To run battleschool, execute the following command:
