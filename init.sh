@@ -42,35 +42,11 @@ else
     ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 fi
 
-info "Checking for pyenv..."
-if [ -d "$HOME/.pyenv" ] || \
-   [ -n "$(pyenv --version 2>/dev/null)" ]; then
-    info "... installed."
-else
-    info "Installing pyenv..."
-    curl -L https://raw.githubusercontent.com/yyuu/pyenv-installer/master/bin/pyenv-installer | bash
-    info "... done."
-    info "Loading pyenv..."
-    export PATH="$HOME/.pyenv/bin:$PATH"
-    info "... done."
-    pyenv update
-    info "Installing the latest Python 2.7 version..."
-    pyenv install 2.7.10
-    pyenv global 2.7.10
-    info "...done.\n\nPlease re-run this script."
-    exit
-fi
-
-export PATH="$HOME/.pyenv/bin:$PATH"
-
-eval "$(pyenv init -)"
-pyenv local 2.7.10
-
 info "Installing pip..."
-curl -Ls https://bootstrap.pypa.io/get-pip.py | $HOME/.pyenv/shims/python
+curl -Ls https://bootstrap.pypa.io/get-pip.py | python
 
 info "Installing battleschool..."
-$HOME/.pyenv/shims/pip install battleschool
+pip install battleschool
 
 info "... and we're done!\n
 To run battleschool, execute the following command:
