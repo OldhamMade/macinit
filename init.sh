@@ -43,7 +43,7 @@ else
 fi
 
 info "Installing pip..."
-curl -Ls https://bootstrap.pypa.io/get-pip.py | python
+curl -Ls https://bootstrap.pypa.io/get-pip.py | sudo python
 
 info "Installing battleschool..."
 pip install battleschool
