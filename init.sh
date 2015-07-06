@@ -44,9 +44,6 @@ else
     echo 'export PATH="/usr/local/sbin:$PATH"' > ~/.bash_profile
 fi
 
-# info "Installing pip..."
-# curl -Ls https://bootstrap.pypa.io/get-pip.py | sudo python
-
 info "Installing python from brew..."
 brew install python
 
