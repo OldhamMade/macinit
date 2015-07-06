@@ -41,11 +41,14 @@ else
     info "Installing homebrew..."
     ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
     brew install caskroom/cask/brew-cask
-    echo 'export PATH="/usr/local/sbin:$PATH"' >> ~/.bash_profile
+    echo 'export PATH="/usr/local/sbin:$PATH"' > ~/.bash_profile
 fi
 
-info "Installing pip..."
-curl -Ls https://bootstrap.pypa.io/get-pip.py | sudo python
+# info "Installing pip..."
+# curl -Ls https://bootstrap.pypa.io/get-pip.py | sudo python
+
+info "Installing python from brew..."
+brew install python
 
 info "Installing battleschool..."
 pip install battleschool
