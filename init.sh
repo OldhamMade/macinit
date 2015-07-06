@@ -45,14 +45,14 @@ else
 fi
 
 info "Installing pip..."
-curl -Ls https://bootstrap.pypa.io/get-pip.py | sudo python
+curl -Ls https://bootstrap.pypa.io/get-pip.py | python
 
 info "Installing battleschool..."
-sudo pip install battleschool
+pip install battleschool
 info "...creating symlinks..."
-sudo ln -s $(python -c "from distutils.sysconfig import get_python_lib; print(get_python_lib())")/usr/share/battleschool /usr/share/battleschool
+ln -s $(python -c "from distutils.sysconfig import get_python_lib; print(get_python_lib())")/usr/share/battleschool /usr/share/battleschool
 info "...changing ownership to $USER..."
-sudo chown -Rf $USER /usr/share/battleschool
+chown -Rf $USER /usr/share/battleschool
 
 info "... and we're done!\n
 To run battleschool, execute the following command:
