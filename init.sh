@@ -53,9 +53,9 @@ brew install python
 info "Installing battleschool..."
 pip install battleschool
 info "...creating symlinks..."
-ln -s $(python -c "from distutils.sysconfig import get_python_lib; print(get_python_lib())")/usr/share/battleschool /usr/share/battleschool
+sudo ln -s $(python -c "from distutils.sysconfig import get_python_lib; print(get_python_lib())")/usr/share/battleschool /usr/share/battleschool
 info "...changing ownership to $USER..."
-chown -Rf $USER /usr/share/battleschool
+sudo chown -Rf $USER /usr/share/battleschool
 
 info "... and we're done!\n
 To run battleschool, execute the following command:
