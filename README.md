@@ -1,6 +1,6 @@
 # macinit
 
-A small script which you can execute which sets up the basics tools useful for a
+A small script which you can execute to set up basic tools useful for a
 freshly-installed mac.
 
 Specifically, it installs the following:
