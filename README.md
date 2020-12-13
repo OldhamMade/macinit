@@ -6,16 +6,24 @@ freshly-installed mac.
 Specifically, it installs the following:
 
 - The xcode command line tools
-- pip, the PyPA recommended tool for installing Python packages
 - homebrew, the "missing package manager for OS X"
-- battleschool, which is an environment provisioning tool similar to boxen, allowing
-  the install of programs/dependencies using a set of declarative config files
+
+## Usage
 
 To start, run the following in a terminal:
 
     $ curl -Ls https://raw.github.com/OldhamMade/macinit/master/init.sh | sh
 
-...and go grab a coffee!
+## Next steps
 
-Once these steps have completed, you can head over to [battleschool](https://github.com/spencergibb/battleschool) to kick off your
-main install.
+Personally I use ansible to manage software installation on my machine.
+
+I do this by first installing dropbox:
+
+    $ brew install ansible dropbox
+    $ open /Applications/Dropbox.app
+
+Once it is set-up (unfortunately a very manual process to sign in,
+configure settings, and activate local syncing), I can then run:
+
+    $ ansible-playbook ~/Dropbox/ansible/playbook.yml
